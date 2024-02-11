@@ -22,24 +22,17 @@ contract Coinflip is Ownable{
         // TO: Get the contract generated flips by calling the helper function getFlips()
         // TO: Compare each element of the user's guesses with the generated guesses. Return true ONLY if all guesses match
         
-        //uint oneFalseGuess = 0;
         uint8[10] memory trueResults = getFlips();
 
         for (uint i=0; i < Guesses.length; i++) {
             
             if (Guesses[i] != trueResults[i]) {
-                //uint oneFalseGuess +=1;
                 return false;
             }
         
         }
         return true; //We reach this code only if we've never entered in the if statement above
 
-        //if oneFalseGuess>0 {
-        //    return false;
-        //} else {
-        //    return true;
-        //}
         
     }
 
@@ -80,12 +73,12 @@ contract Coinflip is Ownable{
         for (uint i=0; i < seedLength; i++){
             // Generating a pseudo-random number by hashing together the character and the block timestamp
             uint randomNum = uint(keccak256(abi.encode(stringInBytes[i*interval], block.timestamp)));
-            //uint randomNum = uint (keccak256(abi.encodePacked (msg.sender, block.timestamp, randomNum)));
+            
             // TO: if the result is an even unsigned integer, record it as 1 in the results array, otherwise record it as zero
             if (randomNum %2 == 0 && randomNum >=0 ) {
-                flips[i] = 1; //uint8(randomNum);
+                flips[i] = 1;
             } else {
-                flips[i] = 0; //uint8(randomNum);
+                flips[i] = 0;
             }
         }
 
